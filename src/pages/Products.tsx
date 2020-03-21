@@ -1,7 +1,6 @@
 import React from "react";
-import { RouterProps } from "react-router";
 
-const Home: React.FC<RouterProps> = () => (
+const Products: React.FC<> = () => (
   <>
     <div>Horacio</div>
     <div>Horacio</div>
@@ -9,4 +8,4 @@ const Home: React.FC<RouterProps> = () => (
   </>
 );
 
-export default Home;
+export default Products;

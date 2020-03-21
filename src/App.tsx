@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-const Home = lazy(() => import("./pages/Home"));
-const About = lazy(() => import("./pages/About"));
+const Products = lazy(() => import("./pages/Products"));
+const Cart = lazy(() => import("./pages/Cart"));
 
 const App: React.FC = () => {
   return (
@@ -9,10 +9,10 @@ const App: React.FC = () => {
       <Suspense fallback={<div>Loading...</div>}>
         <Switch>
           <Route exact path="/">
-            <Home />
+            <Products />
           </Route>
-          <Route path="/about">
-            <About />
+          <Route path="/cart">
+            <Cart />
           </Route>
           <Route>
             <span>Not found :(</span>
