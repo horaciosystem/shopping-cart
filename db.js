@@ -1,4 +1,4 @@
-module.exports = {
+module.exports = () => ({
   products: [
     {
       id: 1,
@@ -14,7 +14,7 @@ module.exports = {
                     Possibilidade de troca do cabo de aço quando desgastado`,
       brand: "Rogue",
       price: "172.35",
-      colour: "black",
+      color: "black",
       size: "3 metros"
     },
     {
@@ -23,7 +23,7 @@ module.exports = {
       description: "Shoes Reebok Legacy Lifter weightlifting",
       brand: "Reebok",
       price: "1359.00",
-      colour: "black",
+      color: "black",
       size: "41"
     },
     {
@@ -34,7 +34,7 @@ module.exports = {
                     de musculação, treinos funcionais e WODs CrossFit`,
       brand: "Skyhill",
       price: "149.99",
-      colour: "orange",
+      color: "orange",
       size: "G"
     },
     {
@@ -46,7 +46,7 @@ module.exports = {
                     mantendo o local aquecido e provendo uma perfeita estabilidade`,
       brand: "Mamut",
       price: "192.00",
-      colour: "black/blue",
+      color: "black/blue",
       size: "GG"
     },
     {
@@ -58,8 +58,8 @@ module.exports = {
                     Adquira já o seu Nike Metcon.`,
       brand: "Nike",
       price: "599.99",
-      colour: "Black and white",
+      color: "Black and white",
       size: "40"
     }
   ]
-};
+});

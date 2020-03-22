@@ -1,23 +1,31 @@
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-const Products = lazy(() => import("./pages/Products"));
-const Cart = lazy(() => import("./pages/Cart"));
+import Layout from "common/Layout";
+
+const ProductDetailsPage = lazy(() => import("pages/ProductDetails"));
+const ProductsPage = lazy(() => import("./pages/Products"));
+const CartPage = lazy(() => import("./pages/Cart"));
 
 const App: React.FC = () => {
   return (
     <Router>
       <Suspense fallback={<div>Loading...</div>}>
-        <Switch>
-          <Route exact path="/">
-            <Products />
-          </Route>
-          <Route path="/cart">
-            <Cart />
-          </Route>
-          <Route>
-            <span>Not found :(</span>
-          </Route>
-        </Switch>
+        <Layout>
+          <Switch>
+            <Route exact path="/">
+              <ProductsPage />
+            </Route>
+            <Route exact path="/products/:productId">
+              <ProductDetailsPage />
+            </Route>
+            <Route path="/cart">
+              <CartPage />
+            </Route>
+            <Route>
+              <span>Page not found :(</span>
+            </Route>
+          </Switch>
+        </Layout>
       </Suspense>
     </Router>
   );

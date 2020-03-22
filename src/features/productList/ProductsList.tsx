@@ -1,19 +1,37 @@
-import React from 'react'
+import React from "react";
+import useSWR from "swr";
+import { ProductItemType } from "types";
+import { makeRequest } from "api";
+import { Link } from "react-router-dom";
 
-import IssueListItem from './IssueListItem'
+interface Props {}
 
+const ProductsList: React.FC<Props> = () => {
+  const { data, error } = useSWR("products", () =>
+    makeRequest<ProductItemType[]>("products")
+  );
 
-interface Props {
-}
+  if (error) {
+    return <span>{error}</span>;
+  }
 
-const ProductsList = React.FC<Props>({  }) => {
-  const renderedIssues = issues.map(issue => (
-    <li key={issue.id}>
-      <IssueListItem {...issue} showIssueComments={showIssueComments} />
-    </li>
-  ))
+  return (
+    <div className="grid grid-cols-2 gap-4">
+      {!data ? (
+        <span>Loading...</span>
+      ) : (
+        data.map(it => (
+          <Link key={it.id} to={`/products/${it.id}`}>
+            <li className="flex flex-col shadow py-2 px-3 rounded">
+              <div className="text-gray-700 font-semibold">{it.name}</div>
+              <div className="text-gray-600">{it.brand}</div>
+              <span className="font-semibold">R$ {it.price}</span>
+            </li>
+          </Link>
+        ))
+      )}
+    </div>
+  );
+};
 
-  return <ul className={styles.issuesList}>{renderedIssues}</ul>
-}
-
-export default ProductsList
+export default ProductsList;
