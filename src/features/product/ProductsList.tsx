@@ -1,7 +1,7 @@
 import React from "react";
 import useSWR from "swr";
-import { ProductItemType } from "types";
-import { makeRequest } from "api";
+import { ProductItemType } from "src/lib/types";
+import { makeRequest } from "src/lib/api";
 import { Link } from "react-router-dom";
 
 interface Props {}

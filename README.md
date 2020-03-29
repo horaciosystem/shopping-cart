@@ -16,6 +16,10 @@
   - Select color, size, quantity;
 - Add to cart;
 
+#### Product details
+
+- add to cart
+
 #### '/cart' Shopping cart
 
 - Items list;

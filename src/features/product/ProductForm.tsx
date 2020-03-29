@@ -1,7 +1,6 @@
 import React from "react";
-import * as Yup from "yup";
 import { Field, useFormik } from "formik";
-import { ProductItemType } from "types";
+import { ProductItemType } from "src/lib/types";
 
 interface MyFormProps {
   initialValues: ProductItemType;

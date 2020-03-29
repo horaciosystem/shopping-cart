@@ -1,7 +1,9 @@
 import React from "react";
 import useSWR from "swr";
-import { ProductItemType } from "types";
-import { makeRequest } from "api";
+import { ProductItemType } from "src/lib/types";
+import { makeRequest } from "src/lib/api";
+import { useCartContext } from "src/lib/store/CartStore";
+import { useHistory } from "react-router-dom";
 
 interface Props {
   productId: string;
@@ -11,6 +13,8 @@ const ProductsList: React.FC<Props> = ({ productId }) => {
   const { data, error } = useSWR(`product-${productId}`, () =>
     makeRequest<ProductItemType>(`products/${productId}`)
   );
+  const store = useCartContext();
+  const history = useHistory();
 
   if (error) {
     return <span>{error}</span>;
@@ -20,7 +24,13 @@ const ProductsList: React.FC<Props> = ({ productId }) => {
       {!data ? (
         "Loading"
       ) : (
-        <div>
+        <form
+          onSubmit={event => {
+            event.preventDefault();
+            store.addItem(data.id);
+            history.push("/cart");
+          }}
+        >
           <div className="font-semibold text-lg mb-4">{data.name}</div>
           <p className="text-sm text-gray-600 leading-normal mb-3">
             {data.description}
@@ -44,7 +54,7 @@ const ProductsList: React.FC<Props> = ({ productId }) => {
           <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
             Add to cart
           </button>
-        </div>
+        </form>
       )}
     </div>
   );
