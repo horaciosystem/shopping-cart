@@ -1,16 +1,20 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import CartItemsCounter from "src/features/cart/CartItemCounter";
 
 const Layout = ({ children }) => {
   return (
-    <div className="min-h-full flex flex-col">
-      <header className="flex p-2 lg:p-4">
-        Shopping cart
-        <CartItemsCounter />
+    <div className="mx-auto max-w-screen-lg h-full">
+      <header className="py-3 px-4">
+        <Link to="/">Shopping cart</Link>
+        <Link
+          to="/cart"
+          className="ml-auto border border-black rounded py-2 px-4"
+        >
+          <CartItemsCounter />
+        </Link>
       </header>
-      <div className="flex-grow mx-auto max-w-screen-lg w-full Layout">
-        <main>{children}</main>
-      </div>
+      <main className="h-full">{children}</main>
     </div>
   );
 };

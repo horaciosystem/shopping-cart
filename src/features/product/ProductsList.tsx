@@ -16,11 +16,11 @@ const ProductsList: React.FC<Props> = () => {
   }
 
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
       {!data ? (
         <span>Loading...</span>
       ) : (
-        data.map(it => (
+        data.map((it) => (
           <Link key={it.id} to={`/products/${it.id}`}>
             <li className="flex flex-col shadow py-2 px-3 rounded">
               <div className="text-gray-700 font-semibold">{it.name}</div>

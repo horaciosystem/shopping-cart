@@ -16,11 +16,17 @@ const CartContext = createContext<Cart>({
   items: new Map(),
   total: 0,
   count: () => 0,
-  addItem: () => ({})
+  addItem: () => ({}),
+  setQuantity: () => ({}),
 });
 
 interface CartItem {
   quantity: number;
+}
+
+interface QuantityUpdate {
+  productId: string;
+  value: number;
 }
 
 interface Cart {
@@ -28,6 +34,7 @@ interface Cart {
   total: number;
   count(): number;
   addItem(productId: string): void;
+  setQuantity(quantityUpdate: QuantityUpdate): void;
 }
 
 export const CartProvider: React.FC = ({ children }) => {
@@ -36,7 +43,7 @@ export const CartProvider: React.FC = ({ children }) => {
     total: 0,
     get count() {
       return [...store.items.values()].reduce(
-        (acc: number, item: CartItem) => (acc += item.quantity),
+        (acc: number, item: CartItem) => (acc += Number(item.quantity)),
         0
       );
     },
@@ -45,7 +52,11 @@ export const CartProvider: React.FC = ({ children }) => {
       const quantity = item ? item.quantity + 1 : 1;
       store.items.set(productId, { quantity });
       persistCart(store.items);
-    }
+    },
+    setQuantity({ productId, value }) {
+      store.items.set(productId, { quantity: value });
+      persistCart(store.items);
+    },
   }));
 
   return <CartContext.Provider value={store}>{children}</CartContext.Provider>;

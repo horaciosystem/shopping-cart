@@ -23,6 +23,6 @@
 #### '/cart' Shopping cart
 
 - Items list;
-- Item actions: [remove, edit];
+- Item actions: [remove, quantity increase/decrease];
 - Totals
 - Finish;

@@ -5,7 +5,7 @@ import { useObserver } from "mobx-react-lite";
 const CartItemsCounter = () => {
   const store = useCartContext();
 
-  return useObserver(() => <span className="ml-auto">{store.count}</span>);
+  return useObserver(() => <span>{`${store.count}`.padStart(2, "0")}</span>);
 };
 
 export default CartItemsCounter;
