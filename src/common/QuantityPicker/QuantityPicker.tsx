@@ -11,14 +11,24 @@ export default function QuantityPicker({ productId }) {
 
   return useObserver(() => (
     <div className="flex border border-black">
-      <button className="py-2 px-4">-</button>
+      <button
+        className="py-2 px-4"
+        onClick={() => store.decreaseQuantity(productId)}
+      >
+        -
+      </button>
       <input
-        className="mx-2 p-2 text-center"
+        className="mx-2 p-2 text-center w-10"
         value={store.items.get(productId)?.quantity}
         onChange={setQuantity}
-        maxLength="2"
+        maxLength={2}
       />
-      <button className="py-2 px-4">+</button>
+      <button
+        className="py-2 px-4"
+        onClick={() => store.increaseQuantity(productId)}
+      >
+        +
+      </button>
     </div>
   ));
 }

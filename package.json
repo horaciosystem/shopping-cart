@@ -3,30 +3,33 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@types/jest": "25.1.4",
-    "@types/node": "13.9.2",
-    "@types/react": "16.9.25",
-    "@types/react-dom": "16.9.5",
+    "@types/jest": "^25.2.1",
+    "@types/node": "^13.11.1",
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.6",
     "@types/react-router-dom": "^5.1.2",
     "@types/yup": "^0.26.33",
     "express": "^4.17.1",
     "formik": "^2.1.4",
     "json-server": "^0.16.1",
     "mobx": "^5.15.4",
-    "mobx-react-lite": "^1.5.2",
+    "mobx-react-lite": "^2.0.6",
     "node-sass": "^4.13.1",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
-    "swr": "^0.1.18",
-    "tailwindcss": "^1.2.0",
+    "reakit": "^1.0.0-rc.1",
+    "swr": "^0.2.0",
+    "tailwindcss": "^1.4.6",
     "typescript": "3.8.3",
     "yup": "^0.28.3"
   },
   "scripts": {
-    "build:style": "tailwind build src/index.css -o src/tailwind.css",
-    "start": "yarn build:style && react-scripts start",
+    "build:styles": "postcss -w src/index.css -o src/tailwind.css -w",
+    "dev": "run-p build:styles start:react",
+    "start": "react-scripts start",
+    "start:react": "react-scripts start",
     "serve": "json-server --watch db.js --p 4000",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -48,7 +51,14 @@
     ]
   },
   "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^2.2.0",
     "autoprefixer": "^9.7.1",
-    "postcss-cli": "^7.1.0"
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^7.1.0",
+    "postcss-import": "^12.0.1",
+    "postcss-nested": "^4.2.1",
+    "postcss-preset-env": "^6.7.0",
+    "stylelint": "^13.3.2",
+    "stylelint-config-recommended": "^3.0.0"
   }
 }

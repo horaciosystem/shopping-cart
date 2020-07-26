@@ -1,4 +1,4 @@
-export interface ProductItemType {
+export type ProductItemType = {
   id: string;
   name: string;
   description: string;
@@ -6,4 +6,12 @@ export interface ProductItemType {
   price: number;
   color: string;
   size: string;
-}
+};
+
+export type UIBaseProps = {
+  className?: string;
+};
+
+export type UIBaseThemeProps = UIBaseProps & {
+  theme: "primary" | "secondary" | "tertiary" | "inverse";
+};

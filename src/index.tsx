@@ -1,8 +1,9 @@
+import "./tailwind.css";
 import React from "react";
 import ReactDOM from "react-dom";
+import "mobx-react-lite/batchingForReactDom";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import "./tailwind.css";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 

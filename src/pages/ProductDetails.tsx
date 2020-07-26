@@ -8,8 +8,8 @@ const ProductDetailsPage: React.FC<{}> = () => {
 
   return (
     <div>
-      <div className="w-full py-2">
-        <BackButton>Back to products</BackButton>
+      <div className="w-full py-2 mb-8">
+        <BackButton>Back</BackButton>
       </div>
       {productId ? (
         <ProductDetails productId={productId} />

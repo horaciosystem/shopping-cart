@@ -15,7 +15,7 @@ export default function CartList() {
           <div className="flex-1 flex justify-center">Total</div>
         </div>
       </div>
-      {[...store.items.keys()].map((productId) => (
+      {[...(store.items?.keys() ?? [])].map((productId) => (
         <CartListItem key={productId} productId={productId} />
       ))}
     </div>

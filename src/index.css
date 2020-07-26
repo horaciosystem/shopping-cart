@@ -1,22 +1,131 @@
 @tailwind base;
 @tailwind components;
+
+.btn {
+  @apply rounded font-semibold text-xl min-h-action;
+}
+
+.btn:focus {
+  @apply outline-none shadow-outline;
+}
+
+.is-primary {
+  @apply bg-primary text-white;
+}
+.is-primary:hover {
+  @apply bg-primary-lighten;
+}
+.is-primary:active {
+  @apply bg-primary-darken;
+}
+
+.is-secondary {
+  @apply bg-secondary text-white;
+}
+.is-secondary:hover {
+  @apply bg-secondary-lighten;
+}
+.is-secondary:active {
+  @apply bg-secondary-darken;
+}
+
+.is-tertiary {
+  @apply bg-tertiary text-white;
+}
+.is-tertiary:hover {
+  @apply bg-tertiary-lighten;
+}
+.is-tertiary:active {
+  @apply bg-tertiary-darken text-black;
+}
+
+.is-inverse {
+  @apply bg-inverse text-primary-lighten;
+}
+.is-inverse:hover {
+  @apply bg-inverse-darken text-white;
+}
+.is-inverse:active {
+  @apply bg-inverse-lighten text-primary-lighten;
+}
+
+/*buttons or links*/
+.action {
+  &.is-sm {
+    @apply px-4;
+  }
+  &.is-md {
+    @apply px-8;
+  }
+  &.is-lg {
+    @apply px-16;
+  }
+}
+
 @tailwind utilities;
 
-body {
-  margin: 0;
+:root {
+  --black: #2c2c2c;
+  --white: #fff;
+  --gray-100: #f2f2f2;
+  --gray-200: #f0f0f0;
+  --gray-300: #d8d8d8;
+  --gray-400: #bfbfbf;
+  --gray-500: #979797;
+  --gray-600: #939393;
+  --gray-700: #696969;
+  --gray-800: #404040;
+
+  --red-100: #f97773;
+  --red-200: #f85651;
+  --red-300: #de4d48;
+
+  --beige-100: #f4f5ef;
+  --beige-200: #eef1ef;
+}
+
+.theme-light {
+  --color-bg-primary-lighten: #3333ff;
+  --color-bg-primary: #1a1aff;
+  --color-bg-primary-darken: #0000ff;
+
+  --color-bg-secondary-lighten: #0000e6;
+  --color-bg-secondary: #0000cc;
+  --color-bg-secondary-darken: #0000b3;
+
+  --color-bg-tertiary-lighten: #4d94ff;
+  --color-bg-tertiary: #3385ff;
+  --color-bg-tertiary-darken: #1a75ff;
+
+  --color-bg-inverse-lighten: var(--beige-100);
+  --color-bg-inverse: var(--beige-200);
+  --color-bg-inverse-darken: #1a1aff;
+}
+body,
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  height: 100vh;
+  margin: 0;
+  font-weight: 400;
+  height: 100%;
+}
+
+body {
+  font-size: 16px;
+  line-height: 1;
+  color: var(--black);
 }
 
 #root {
-  height: 100vh;
+  height: 100%;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+ol,
+ul {
+  list-style: none;
 }

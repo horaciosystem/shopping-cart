@@ -12,14 +12,6 @@ function persistCart(items) {
   window.localStorage.setItem(CART_ENTRY, JSON.stringify([...items]));
 }
 
-const CartContext = createContext<Cart>({
-  items: new Map(),
-  total: 0,
-  count: () => 0,
-  addItem: () => ({}),
-  setQuantity: () => ({}),
-});
-
 interface CartItem {
   quantity: number;
 }
@@ -32,14 +24,29 @@ interface QuantityUpdate {
 interface Cart {
   items: Map<string, CartItem>;
   total: number;
-  count(): number;
+  count: number;
   addItem(productId: string): void;
   setQuantity(quantityUpdate: QuantityUpdate): void;
+  increaseQuantity(productId: string): void;
+  decreaseQuantity(productId: string): void;
+  removeItem(productId: string): void;
 }
 
+const CartContext = createContext<Cart>({
+  items: new Map<string, CartItem>(),
+  total: 0,
+  get count() {
+    return 0;
+  },
+  addItem(productId: string) {},
+  setQuantity(quantityUpdate: QuantityUpdate) {},
+  increaseQuantity(productId: string) {},
+  decreaseQuantity(productId: string) {},
+  removeItem(productId: string) {},
+});
 export const CartProvider: React.FC = ({ children }) => {
-  const store = useLocalStore<Cart>(() => ({
-    items: new Map(loadLocalCart()),
+  const store: Cart = useLocalStore(() => ({
+    items: new Map<string, CartItem>(loadLocalCart()),
     total: 0,
     get count() {
       return [...store.items.values()].reduce(
@@ -55,6 +62,20 @@ export const CartProvider: React.FC = ({ children }) => {
     },
     setQuantity({ productId, value }) {
       store.items.set(productId, { quantity: value });
+      persistCart(store.items);
+    },
+    increaseQuantity(productId: string) {
+      const item = store.items.get(productId);
+      const newQuantity = item ? item.quantity + 1 : 1;
+      store.setQuantity({ productId, value: newQuantity });
+    },
+    decreaseQuantity(productId: string) {
+      const item = store.items.get(productId);
+      const newQuantity = item ? item.quantity - 1 : 1;
+      store.setQuantity({ productId, value: newQuantity });
+    },
+    removeItem(productId: string) {
+      store.items.delete(productId);
       persistCart(store.items);
     },
   }));
